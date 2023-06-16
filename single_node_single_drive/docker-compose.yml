@@ -10,7 +10,7 @@ services:
       - ${MINIO_PORT}:9000
       - ${MINIO_CONSOLE_PORT}:9001
     volumes:
-      - ./data:/data
+      - ${DATA_DATA_PATH}:/data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s

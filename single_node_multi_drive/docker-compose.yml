@@ -5,13 +5,13 @@ services:
     environment:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
-    command: server --console-address=":9001"
+    command: server --console-address=":9001" /data{1...2}
     ports:
       - ${MINIO_PORT}:9000
       - ${MINIO_CONSOLE_PORT}:9001
     volumes:
-      - ./data1-1:/data1
-      - ./data1-2:/data2
+      - ${DATA1_DATA_PATH}:/data1
+      - ${DATA1_DATA_PATH}:/data2
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
